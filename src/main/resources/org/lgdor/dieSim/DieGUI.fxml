@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="javafx.scene.layout.GridPane" 
+          xmlns:fx="http://javafx.com/fxml/1"  
+          xmlns="http://javafx.com/javafx/8.0_40" >
+    <HBox fx:id="box" spacing="30" alignment="center" GridPane.columnIndex="0" GridPane.rowIndex="0"  >
+        <Text fx:id="number" /><!--This is the problem component-->
+        <Text fx:id="value"/>
+        <Button fx:id="dieButton" text="Roll Again" onAction="#roll"  />
+    </HBox>
+</fx:root>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+<?import javafx.scene.control.cell.*?>
+
+<GridPane   fx:id="mainPane" 
+            styleClass="mainFxmlClass" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="org.lgdor.dieSim.MainWindowController" 
+            xmlns="http://javafx.com/javafx/8.0_40"
+            prefHeight="500.0" 
+            prefWidth="700.0" 
+            hgap="10" 
+            vgap="10" >
+    <stylesheets>
+        <URL value="@mainwindow.css"/>
+    </stylesheets>
+    <padding>
+        <Insets top="25" right="25" bottom="10" left="25"/>
+    </padding>
+    <Text fx:id="welcomeText" text="Welcome to DieSim" 
+          GridPane.columnIndex="0" 
+          GridPane.rowIndex="0"
+          GridPane.columnSpan="5"/>
+    <Label fx:id="spinnerText"
+           text="Please input the number of dice you want to roll:"
+           GridPane.columnIndex="0" 
+           GridPane.rowIndex="1"
+           GridPane.columnSpan="2"/>
+    <Spinner fx:id="spinner" editable="true" 
+             GridPane.columnIndex="3" 
+             GridPane.rowIndex="1" />
+    <HBox fx:id="buttonBox"
+          spacing="10" 
+          alignment="center" 
+          GridPane.columnIndex="5" 
+          GridPane.rowIndex="1">
+        <Button text="Roll Dice" onAction="#createDice"/>
+        
+    </HBox>
+    <Label fx:id="dieNumberText" text="The number of dice is: "
+          GridPane.columnIndex="0" 
+          GridPane.rowIndex="2"
+          GridPane.columnSpan="1"/>
+    <Text fx:id="dieNumber" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+    <Label fx:id="dieSumText" text="The sum of the dice is: "
+          GridPane.columnIndex="0" 
+          GridPane.rowIndex="3"
+          GridPane.columnSpan="1"/>
+    <Text fx:id="sumNumber" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+    <HBox spacing="10" GridPane.columnIndex="0" 
+          GridPane.rowIndex="4"
+          GridPane.columnSpan="5">
+        <Text styleClass="columnTitleClass" text="Die"></Text>
+        <Text styleClass="columnTitleClass" text="Value"></Text>
+    </HBox>
+    <ScrollPane GridPane.columnIndex="0" 
+                GridPane.rowIndex="5"
+                fitToHeight="true"
+                prefWidth="260.0"
+                styleClass="scrollClass"
+                hbarPolicy="NEVER">
+        <content>
+            <VBox fx:id="rowBox"
+                  spacing="10" 
+                  alignment="center" >
+
+
+            </VBox>
+        </content>
+    </ScrollPane>
+    
+    
+</GridPane>

@@ -1,0 +1,52 @@
+version = '0.1.0'
+
+apply plugin: 'base' // To add "clean" task to the root project.
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = '1.8'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+mainClassName = 'org.lgdor.dieSim.DieSimFX'
+
+repositories {
+    mavenCentral()
+    // You may define additional repositories, or even remove "mavenCentral()".
+    // Read more about repositories here:
+    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
+}
+
+dependencies {
+    // TODO: Add dependencies here ...
+    // You can read more about how to add dependency here:
+    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
+    testCompile group: 'junit', name: 'junit', version: '4.10'
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': mainClassName,
+                   'Implementation-Title': project.name,
+                   'Implementation-Version': project.version,
+                   'Created-by': 'LGDOR',
+                   'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '))
+    }
+    
+    //!!! Uncomment the "from" statement belwo if you want to build a single big fat jar with all the dependencies and be able to execute the Application.jar directly.
+    //Otherwise leave commented out as it will take a lot longer to process
+    //!!!Keep in mind, you don't need a fat jar if you have all the dependencies in the same folder as the Application.jar.
+    //Note: This is already built automatically - just look in build/distributions/Application.zip/Application-version.lib (remember to unzip first).
+    //Of course, you can also just use the executables (i.e., .bat file in windows) in the bin folder 
+    
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+}
+
+task(debug, dependsOn: 'classes', type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    ignoreExitValue = true
+    debug = true
+}
